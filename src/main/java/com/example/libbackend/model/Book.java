@@ -1,16 +1,12 @@
 package com.example.libbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.*;
 
 @Entity
 public class Book {
 
     @Id
-   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
@@ -19,7 +15,13 @@ public class Book {
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean available;
 
+    // Reference to Borrower entity
+    @ManyToOne
+    @JoinColumn(name = "borrower_id") // Assuming the column name in the book table is borrower_id
+    private Borrower borrower;
+
     // Constructors, getters, and setters
+    // Constructor
     public Book() {}
 
     public Book(String title, String author, String genre, boolean available) {
@@ -29,6 +31,7 @@ public class Book {
         this.available = available;
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -67,5 +70,13 @@ public class Book {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public Borrower getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(Borrower borrower) {
+        this.borrower = borrower;
     }
 }
