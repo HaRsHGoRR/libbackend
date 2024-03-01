@@ -3,7 +3,6 @@ package com.example.libbackend.controller;
 import com.example.libbackend.model.Book;
 import com.example.libbackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,11 +31,9 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> addBook(@RequestParam Long id, @RequestBody Book book) {
-        // Ensure that the provided ID is set for the book
-        book.setId(id);
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book savedBook = bookService.addBook(book);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedBook);
+        return ResponseEntity.ok(savedBook);
     }
 
     @PutMapping("/{id}")
@@ -53,5 +50,10 @@ public class BookController {
     public ResponseEntity<?> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam String q) {
+        return bookService.searchBooks(q);
     }
 }

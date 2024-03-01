@@ -35,4 +35,8 @@ public class BookService {
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
+
+    public List<Book> searchBooks(String query) {
+        return bookRepository.findByTitleContainingOrAuthorContainingOrGenreContaining(query, query, query);
+    }
 }
