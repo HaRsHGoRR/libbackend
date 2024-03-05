@@ -3,10 +3,7 @@ package com.example.libbackend.controller;// AdminController.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.libbackend.model.Admin;
 import com.example.libbackend.service.AdminService;
 
@@ -27,5 +24,9 @@ public class AdminController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Registration failed: " + e.getMessage());
         }
+    }
+    @GetMapping("/admin/{email}")
+    public Admin getAdminByEmail(@PathVariable String email) {
+        return adminService.getAdminByEmail(email);
     }
 }

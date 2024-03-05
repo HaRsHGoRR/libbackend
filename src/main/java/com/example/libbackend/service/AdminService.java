@@ -1,4 +1,4 @@
-package com.example.libbackend.service;// AdminService.java
+package com.example.libbackend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +17,9 @@ public class AdminService {
 
         // Save the admin
         return adminRepository.save(admin);
+    }
+
+    public Admin getAdminByEmail(String email) {
+        return adminRepository.findByEmail(email);
     }
 }
