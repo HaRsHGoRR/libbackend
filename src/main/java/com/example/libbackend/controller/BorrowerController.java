@@ -21,7 +21,7 @@ public class BorrowerController {
         return borrowerService.getAllBorrowersWithBooksBorrowed();
     }
 
-    @GetMapping("/withoutBooks")
+    @GetMapping("/alll")
     public List<Borrower> getAllBorrowers() {
         return borrowerService.getAllBorrowers(); // Use the existing method to retrieve all borrowers
     }

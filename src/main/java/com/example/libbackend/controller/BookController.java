@@ -1,8 +1,10 @@
 package com.example.libbackend.controller;
 
 import com.example.libbackend.model.Book;
+import com.example.libbackend.model.Borrower;
 import com.example.libbackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,15 @@ public class BookController {
             return ResponseEntity.ok(book);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+    @PostMapping("/{id}/borrow")
+    public ResponseEntity<Book> borrowBook(@PathVariable Long id, @RequestBody Borrower borrower) {
+        Book borrowedBook = bookService.borrowBook(id, borrower);
+        if (borrowedBook != null) {
+            return ResponseEntity.ok(borrowedBook);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 

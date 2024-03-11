@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface BorrowerRepository extends JpaRepository<Borrower, Long> {
     Borrower findByEmail(String email);
+
+    Borrower findByEmailAndPassword(String email, String password);
 }

@@ -10,10 +10,12 @@ public class Book {
     private Long id;
 
     private String title;
+    private Long borrowerrId;
     private String author;
     private String genre;
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean available;
+  //  private Long borrowerId; // New field
 
     // Reference to Borrower entity
     @ManyToOne
@@ -79,4 +81,15 @@ public class Book {
     public void setBorrower(Borrower borrower) {
         this.borrower = borrower;
     }
+
+
+    public void setBorrowerrId(Long borrowerId) {
+        this.borrowerrId = borrowerId;
+    }
+
+//    public long getBorrowerId() {
+//        return borrowerId;
+//    }
+
+
 }

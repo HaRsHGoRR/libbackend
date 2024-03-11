@@ -9,8 +9,10 @@ public class Borrower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private long bookid;
     private String password; // New field
     private String name;
+    @Column(nullable = false)
     private String email;
     private String contactNumber;
 
@@ -87,5 +89,12 @@ public class Borrower {
                 ", contactNumber='" + contactNumber + '\'' +
                 ", booksBorrowed=" + booksBorrowed +
                 '}';
+    }
+
+    public void setbookid(Long id) {
+        this.bookid = id;
+    }
+    public long getbookid() {
+        return bookid;
     }
 }
