@@ -9,7 +9,7 @@ public class Borrower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String password; // New field
     private String name;
     private String email;
     private String contactNumber;
@@ -38,6 +38,16 @@ public class Borrower {
 
     public String getName() {
         return name;
+    }
+
+
+    // Getter and setter for password
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {

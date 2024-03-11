@@ -51,6 +51,21 @@ public class BorrowerController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping("/register")
+    public ResponseEntity<Borrower> registerBorrower(@RequestBody Borrower borrower) {
+        Borrower registeredBorrower = borrowerService.registerBorrower(borrower);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredBorrower);
+    }
+
+    @PostMapping("/get/{email}")
+    public ResponseEntity<Borrower> getBorrowerByEmail(@PathVariable String email) {
+        Borrower borrower = borrowerService.getBorrowerByEmail(email);
+        if (borrower != null) {
+            return ResponseEntity.ok(borrower);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteBorrower(@PathVariable Long id) {

@@ -5,6 +5,7 @@ import com.example.libbackend.repository.BorrowerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BorrowerService {
@@ -21,6 +22,15 @@ public class BorrowerService {
     }
     public List<Borrower> getAllBorrowersWithBooksBorrowed() {
         return borrowerRepository.findAll(); // This should eagerly fetch booksBorrowed
+    }
+
+    public Borrower registerBorrower(Borrower borrower) {
+        // Additional business logic for registration, if needed
+        return borrowerRepository.save(borrower);
+    }
+
+    public Borrower getBorrowerByEmail(String email) {
+        return borrowerRepository.findByEmail(email);
     }
     public Borrower addBorrower(Borrower borrower) {
         return borrowerRepository.save(borrower);
